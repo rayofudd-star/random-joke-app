@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Random Joke Generator</title>
+  <title>😂 Random Joke Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>😂 Random Joke Generator</h1>
   <div id="joke-box">
-    <p id="joke">Click the button to see a joke!</p>
+    <p id="joke">Click a mood to see a joke!</p>
   </div>
-  <button id="get-joke-btn">Get a Joke</button>
-
+  <div id="buttons">
+    <button class="mood-btn" data-mood="general">General</button>
+    <button class="mood-btn" data-mood="programming">Programming</button>
+    <button class="mood-btn" data-mood="knock-knock">Knock-Knock</button>
+    <button class="mood-btn" data-mood="dad">Dad Joke</button>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
