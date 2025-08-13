@@ -1,15 +1,39 @@
-const jokeBtn = document.getElementById('get-joke-btn');
 const jokeText = document.getElementById('joke');
+const buttons = document.querySelectorAll('.mood-btn');
 
-jokeBtn.addEventListener('click', getJoke);
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const mood = button.getAttribute('data-mood');
+    getJoke(mood);
+  });
+});
 
-function getJoke() {
-  fetch('https://official-joke-api.appspot.com/random_joke')
-    .then(response => response.json())
-    .then(data => {
-      jokeText.textContent = `${data.setup} ... ${data.punchline}`;
+function getJoke(mood) {
+  jokeText.textContent = 'Loading...';
+
+  if (mood === 'dad') {
+    // Fetch a Dad Joke from icanhazdadjoke.com
+    fetch('https://icanhazdadjoke.com/', {
+      headers: { 'Accept': 'application/json' }
     })
-    .catch(error => {
-      jokeText.textContent = 'Oops! Could not get a joke right now.';
-    });
+      .then(response => response.json())
+      .then(data => {
+        jokeText.textContent = data.joke;
+      })
+      .catch(() => {
+        jokeText.textContent = 'Oops! Could not get a dad joke right now.';
+      });
+  } else {
+    // Official Joke API for other moods
+    fetch(`https://official-joke-api.appspot.com/jokes/${mood}/random`)
+      .then(response => response.json())
+      .then(data => {
+        // API returns an array for these endpoints
+        const joke = data[0];
+        jokeText.textContent = `${joke.setup} ... ${joke.punchline}`;
+      })
+      .catch(() => {
+        jokeText.textContent = `Oops! Could not get a ${mood} joke right now.`;
+      });
+  }
 }
