@@ -14,16 +14,21 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-button {
+#buttons {
+  margin-top: 24px;
+}
+
+.mood-btn {
   background: #ffce00;
   border: none;
-  padding: 15px 25px;
+  padding: 12px 25px;
   border-radius: 8px;
-  font-size: 1.1em;
+  font-size: 1em;
   cursor: pointer;
+  margin: 0 8px 10px 8px;
   transition: background 0.2s;
 }
 
-button:hover {
+.mood-btn:hover {
   background: #ffd900;
 }
